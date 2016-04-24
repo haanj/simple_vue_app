@@ -1,0 +1,62 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+  <!--<meta charset="UTF-8">-->
+  <!--<title>List</title>-->
+
+  <!--<style>-->
+    <!--.ng-cloak {-->
+      <!--display: none !important; -->
+    <!--}-->
+  <!--</style>-->
+<!--</head>-->
+<!--<body data-ng-cloak data-ng-app="SnackApp">-->
+  <!--<main data-ng-controller="SnackController as snackctrl">-->
+    <!--<div data-ng-show="snackctrl.edit == true">-->
+      <!--<input data-ng-model="newName" placeholder="Snack Name"></br>-->
+      <!--<input data-ng-model="newIngredients" placeholder="Ingredients, separated by comma"></br>-->
+      <!--<input data-ng-model="newTags" placeholder="Tags, separated by comma"></br>-->
+      <!--<button data-ng-click="snackctrl.updateSnack(newName, newIngredients, newTags)">Save Changes</button>-->
+      <!--<button data-ng-click="snackctrl.toggleEdit()">Cancel</button>-->
+    <!--</div>-->
+     <!--<div data-ng-repeat="snack in snackctrl.snacks">-->
+      <!--<h1 data-ng-click="snackctrl.makeActive(snack._id)">{{snack.name}}</h1>-->
+      <!--<button data-ng-click="snackctrl.deleteSnack(snack._id)">DELETE</button>-->
+      <!--<ul data-ng-show="snackctrl.isActive(snack._id)" data-ng-repeat="ingredient in snack.ingredients">-->
+        <!--<li>{{ingredient}}</li>-->
+      <!--</ul>-->
+      <!--<button data-ng-show="snackctrl.isActive(snack._id)" data-ng-click="snackctrl.toggleEdit()">Edit</button>-->
+    <!--</div>-->
+    <!--<h1 id="addSnack" data-ng-click="snackctrl.makeActive('new')">Add New Snack</h1>-->
+    <!--<div data-ng-show="snackctrl.isActive('new')">-->
+      <!--<input id="newName" data-ng-model="newName" placeholder="Snack Name"></br>-->
+      <!--<input id="newIngredients" data-ng-model="newIngredients" placeholder="Ingredients, separated by comma"></br>-->
+      <!--<input id="newTags" data-ng-model="newTags" placeholder="Tags, separated by comma"></br>-->
+      <!--<button data-ng-click="snackctrl.addSnack(newName, newIngredients, newTags)">Add Snack</button>-->
+    <!--</div>-->
+  <!--</main>-->
+  <!--<script src='./bundle.js'></script>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Snack List</title>
+</head>
+<body id="app">
+  {{ message }}
+
+  <section v-for="snack in snacks">
+    <h1 v-on:click="makeActive(snack._id)">{{ snack.name }}</h1>
+    <div v-if="isActive(snack._id)">
+      <ul v-for="ingredient in snack.ingredients">
+        <li>{{ ingredient }}</li>
+      </ul>
+      <button v-on:click="deleteSnack(snack._id)">Delete</button>
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script src="./app/app.js"></script>
+</body>

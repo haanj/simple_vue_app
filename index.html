@@ -47,15 +47,25 @@
   {{ message }}
 
   <section v-for="snack in snacks">
-    <h1 v-on:click="makeActive(snack._id)">{{ snack.name }}</h1>
+    <h1 v-on:click="toggleActive(snack._id)">{{ snack.name }}</h1>
     <div v-if="isActive(snack._id)">
-      <ul v-for="ingredient in snack.ingredients">
-        <li>{{ ingredient }}</li>
+      <ul>
+        <li v-for="ingredient in snack.ingredients">{{ ingredient }}</li>
       </ul>
+      <input v-model="newName" placeholder="Snack Name"></input></br>
+      <input v-model="newIngredients" placeholder="Ingredients, separated by a comma"></input></br>
+      <input v-model="newTags" placeholder="Tags, separated by a comma"></input></br>
+      <button v-on:click="updateSnack()">Update</button>
       <button v-on:click="deleteSnack(snack._id)">Delete</button>
     </div>
   </section>
-
+  <section>
+    <input v-model="newName" placeholder="Snack Name"></input></br>
+    <input v-model="newIngredients" placeholder="Ingredients, separated by a comma"></input></br>
+    <input v-model="newTags" placeholder="Tags, separated by a comma"></input></br>
+    <button v-on:click="newSnack()">Add Snack</button>
+  </section>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
   <script src="./node_modules/vue/dist/vue.js"></script>
   <script src="./app/app.js"></script>

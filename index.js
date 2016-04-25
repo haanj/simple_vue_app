@@ -75,7 +75,10 @@ app.route('/snacks')
   })
   .post((req, res) => {
     console.log('POST request received for /snacks');
+    console.log(req.body)
     var newSnack = new Snack(req.body);
+    console.log(newSnack)
+    
     newSnack.save((err, snack) => {
       res.json(snack);
     });
